@@ -1,0 +1,15 @@
+C:\Software Guild\Advanced Java\Hangman\src\main\java\com\sg\hangman\service\HangmanServiceLayerImpl.java
+C:\Software Guild\Advanced Java\Hangman\src\main\java\com\sg\hangman\ui\UserIO.java
+C:\Software Guild\Advanced Java\Hangman\src\main\java\com\sg\hangman\dao\HangmanPersistenceException.java
+C:\Software Guild\Advanced Java\Hangman\src\main\java\com\sg\hangman\ui\UserIOConsoleImpl.java
+C:\Software Guild\Advanced Java\Hangman\src\main\java\com\sg\hangman\dao\HangmanDao.java
+C:\Software Guild\Advanced Java\Hangman\src\main\java\com\sg\hangman\service\HangmanDataValidationException.java
+C:\Software Guild\Advanced Java\Hangman\src\main\java\com\sg\hangman\service\HangmanServiceLayer.java
+C:\Software Guild\Advanced Java\Hangman\src\main\java\com\sg\hangman\App.java
+C:\Software Guild\Advanced Java\Hangman\src\main\java\com\sg\hangman\dao\HangmanAuditDao.java
+C:\Software Guild\Advanced Java\Hangman\src\main\java\com\sg\hangman\dao\HangmanDaoFileImpl.java
+C:\Software Guild\Advanced Java\Hangman\src\main\java\com\sg\hangman\controller\HangmanController.java
+C:\Software Guild\Advanced Java\Hangman\src\main\java\com\sg\hangman\service\HangmanDuplicateWordException.java
+C:\Software Guild\Advanced Java\Hangman\src\main\java\com\sg\hangman\dto\Word.java
+C:\Software Guild\Advanced Java\Hangman\src\main\java\com\sg\hangman\dao\HangmanAuditDaoFileImpl.java
+C:\Software Guild\Advanced Java\Hangman\src\main\java\com\sg\hangman\ui\HangmanView.java

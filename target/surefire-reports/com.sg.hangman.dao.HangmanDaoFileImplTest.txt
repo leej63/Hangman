@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: com.sg.hangman.dao.HangmanDaoFileImplTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.012 sec <<< FAILURE!
+com.sg.hangman.dao.HangmanDaoFileImplTest.testSomeMethod()  Time elapsed: 0.009 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:84)
+	at com.sg.hangman.dao.HangmanDaoFileImplTest.testSomeMethod(HangmanDaoFileImplTest.java:48)
+
