@@ -8,6 +8,7 @@ package com.sg.hangman.service;
 import com.sg.hangman.dao.HangmanDao;
 import com.sg.hangman.dao.HangmanPersistenceException;
 import com.sg.hangman.dto.Word;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,25 +22,43 @@ public class HangmanDaoStubImpl implements HangmanDao {
     public HangmanDaoStubImpl() {
         onlyWord = new Word("hangman");
     }
+    
+    public HangmanDaoStubImpl(Word testWord) {
+        this.onlyWord = testWord;
+    }
 
     @Override
     public Word addWord(String wordId, Word word) throws HangmanPersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(wordId.equals(onlyWord.getWord())) {
+            return onlyWord;
+        } else {
+            return null;
+        }
     }
 
     @Override
     public List<Word> getAllWords() throws HangmanPersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Word> wordList = new ArrayList<>();
+        wordList.add(onlyWord);
+        return wordList;
     }
 
     @Override
     public Word getWord(String wordId) throws HangmanPersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(wordId.equals(onlyWord.getWord())) {
+            return onlyWord;
+        } else {
+            return null;
+        }
     }
 
     @Override
     public Word removeWord(String wordId) throws HangmanPersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(wordId.equals(onlyWord.getWord())) {
+            return onlyWord;
+        } else {
+            return null;
+        }
     }
     
     

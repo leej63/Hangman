@@ -72,7 +72,7 @@ public class HangmanServiceLayerImpl implements HangmanServiceLayer {
             }           
         }        
 
-        int rng = randomizer.nextInt(validWordList.size() - 1);
+        int rng = randomizer.nextInt(validWordList.size());
         Word randomWord = validWordList.get(rng);
         
         auditDao.writeAuditEntry("Randomly selected word: '" + randomWord.getWord() + "'.");

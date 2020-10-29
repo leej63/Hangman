@@ -89,56 +89,58 @@ public class HangmanController {
                 }
             }
         } catch (HangmanPersistenceException e) {
-            view.displayErrorMessage(e.getMessage());
+            errorMessage(e.getMessage());
         }
     }
 
     private void playHangman() {
+        boolean winOrLoss = false;
         boolean keepGoing = true;
         int wrongGuess = 0;
-        boolean winOrLoss = false;
         try {
             Word randomWord = randomWord();
-            char[] correctChars = new char[randomWord.getWord().length()];
+            String strRandomWord = randomWord.getWord();
+            randomWordChosenMessage();
+            List<Character> wrongChars = new ArrayList<>();
+            char[] correctChars = new char[strRandomWord.length()];
             for(int i = 0; i < correctChars.length; i++) {
                 correctChars[i] = '_';
             }
-            List<Character> wrongChars = new ArrayList<>();
             while (keepGoing) {
-                String letterSelected = charSelection();
-                if(wrongChars.contains(letterSelected.charAt(0)) || checkIfLetterChosenAlready(letterSelected.charAt(0), correctChars)) {
-                    view.printAlreadyChosenMessage();
+                String strLetterSelected = charSelection();
+                char letterSelected = strLetterSelected.charAt(0);
+                if(wrongChars.contains(letterSelected) || checkIfLetterChosenAlready(letterSelected, correctChars)) {
+                    letterHasBeenUsed();
                     continue;
                 } else {
-
-                    if(randomWord.getWord().contains(letterSelected)) {
-                        // view - print out which letters are correct
-                        view.printImage(wrongGuess);
-                        correctChars = view.printCorrectChars(randomWord.getWord(), letterSelected.charAt(0), correctChars);
-                        view.printWrongChars(randomWord.getWord(), letterSelected.charAt(0), wrongChars);
-                        if(String.copyValueOf(correctChars).equals(randomWord.getWord())) {
+                    if(strRandomWord.contains(strLetterSelected)) {
+                        // logic for guessing a correct letter
+                        hangmanImage(wrongGuess);
+                        correctChars = correctChars(strRandomWord, letterSelected, correctChars);
+                        wrongChars(strRandomWord, letterSelected, wrongChars);
+                        if(String.copyValueOf(correctChars).equals(strRandomWord)) {
                             keepGoing = false;
                             winOrLoss = true;
-                            view.printWinMessage();
+                            wonGame();
                         }
                     } else {
-                        // does not contain letter selected - lose at 6 guesses
+                        // logic for guessing an incorrect letter
                         wrongGuess++;
-                        view.printImage(wrongGuess);
-                        view.printCorrectChars(randomWord.getWord(), letterSelected.charAt(0), correctChars);
-                        wrongChars = view.printWrongChars(randomWord.getWord(), letterSelected.charAt(0), wrongChars);
+                        hangmanImage(wrongGuess);
+                        correctChars(strRandomWord, letterSelected, correctChars);
+                        wrongChars = wrongChars(strRandomWord, letterSelected, wrongChars);
                         if(wrongGuess == 6) {
                             keepGoing = false;
                             winOrLoss = false;
-                            view.printLoseMessage();
+                            lostGame();
                         }
                     }
                 }
             }
             service.roundWinOrLoss(winOrLoss);
-            view.enterToContinue();
+            enterToContinue();
         } catch (HangmanPersistenceException e) {
-            view.displayErrorMessage(e.getMessage());
+            errorMessage(e.getMessage());
         }
     }
     
@@ -159,7 +161,7 @@ public class HangmanController {
     }
     
     private String charSelection() {
-        return view.printRandomWordChosenGetCharSelection();
+        return view.getCharSelection();
     }
     
     private boolean checkIfLetterChosenAlready(char letterSelected, char[] correctChars) {
@@ -169,6 +171,38 @@ public class HangmanController {
             }
         }
         return false;
+    }
+    
+    private void randomWordChosenMessage() {
+        view.printRandomWordChosen();
+    }
+    
+    private void letterHasBeenUsed() {
+        view.printAlreadyChosenMessage();
+    }
+    
+    private void hangmanImage(int wrongGuess) {
+        view.printImage(wrongGuess);
+    }
+    
+    private char[] correctChars(String randomWord, char letterSelected, char[] correctChars) {
+        return view.printCorrectChars(randomWord, letterSelected, correctChars);
+    }
+    
+    private List<Character> wrongChars(String randomWord, char letterSelected, List<Character> wrongChars) {
+        return view.printWrongChars(randomWord, letterSelected, wrongChars);
+    }
+    
+    private void wonGame() {
+        view.printWinMessage();
+    }
+    
+    private void lostGame() {
+        view.printLoseMessage();
+    }
+    
+    private void enterToContinue() {
+        view.printEnterToContinue();
     }
     
     private void createWord() throws HangmanPersistenceException {
@@ -205,6 +239,10 @@ public class HangmanController {
         String wordId = view.getWordChoice();
         Word removedWord = service.removeWord(wordId);
         view.displayRemoveResult(removedWord);
+    }
+    
+    private void errorMessage(String message) {
+        view.displayErrorMessage(message);
     }
     
     private void unknownCommand() {

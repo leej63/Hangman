@@ -105,12 +105,12 @@ public class HangmanView {
         io.readString("Please hit enter to continue.");
     }
     
-    public String printRandomWordChosenGetCharSelection() {
-//        io.printLine("A random word has been chosen.");
+    public String getCharSelection() {
         String charChoice = null;
         boolean isValid = false;
         while (!isValid) {            
             charChoice = io.readChar("\nPlease guess a letter.");
+            io.readString("");
             if(charChoice.isEmpty() || charChoice.contains(" ") || charChoice.length() > 1) {
                 io.printLine("Input must be only 1 letter from A to Z.");
                 continue;
@@ -214,7 +214,7 @@ public class HangmanView {
             io.print(c + " ");
         }
 
-        io.printLine(strRandomWord);
+        io.printLine("\n" + strRandomWord); // show the random word selecte
         return correctChars;
     }
     
@@ -230,6 +230,10 @@ public class HangmanView {
         return wrongChars;
     }
     
+    public void printRandomWordChosen() {
+        io.printLine("A random word has been chosen.");
+    }
+    
     public void printWinMessage() {
         io.printLine("\nYou've won!");
     }
@@ -242,7 +246,7 @@ public class HangmanView {
         io.printLine("You have already chosen this letter, please choose another letter.");
     }
     
-    public void enterToContinue() {
+    public void printEnterToContinue() {
         io.readString("Please hit enter to continue.");
     }
     
